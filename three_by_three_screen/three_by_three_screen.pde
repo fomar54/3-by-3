@@ -1,13 +1,15 @@
 //Global Variables
-color black=0, resetWhite=255, pink=#FF00E6, brown=#BC6F2F; //Not night mode (lots of Blue)
+color black=0, resetWhite=255, pink=#FF00E6, brown=#BC6F2F,grey=#867A7A; //Not night mode (lots of Blue)
 color red=color(255, 0, 0), yellow=color(255, 255, 0); //Night Mode example colours, no BLUE
-Boolean turnOnYellow=false, turnOnPink=false, turnOnBrown=false;
+Boolean turnOnYellow=false, turnOnPink=false, turnOnBrown=false,turnongrey=false ;
 float rectWidth, rectHeight, ptDiameter;
 //Points are organized by row and actaully ... hint-hint ... value
 int numberOfPoints = 17;
 float[] ptX = new float[numberOfPoints];
 float[] ptY = new float[numberOfPoints];
-int numberofButtons = 4; //Quit, Reset, 1 per square for minimum
+; //Quit, Reset, 1 per square for minimum
+int numberofButtons = 5;
+
 float[] buttonX = new float[numberofButtons];
 float[] buttonY = new float[numberofButtons];
 float[] buttonWidth = new float[numberofButtons];
@@ -48,6 +50,11 @@ void setup()
   buttonWidth[3] = appWidth*(1.0/3.0)*(1.0/5.0); //Denominator is 15
   buttonHeight[3] = appHeight*(1.0/3.0)*(1.0/5.0); //Denominator is 15
   //
+   buttonX[4] = appWidth*(11.0/15.0); //Section 3, subsection 2, Numerator is 11
+  buttonY[4] = appHeight*(15.0/18.0); //Section 3, subsection 4, Numerator is 14
+  buttonWidth[4] = appWidth*(1.0/3.0)*(1.0/5.0); //Denominator is 15
+  buttonHeight[4] = appHeight*(1.0/3.0)*(1.0/5.0); //Denominator is 15
+//
   printArray(buttonX);
   printArray(buttonY);
   printArray(buttonWidth);
@@ -61,6 +68,7 @@ void draw() {
   //
   if ( turnOnYellow==true ) fill(yellow);
   if ( turnOnPink==true ) fill(pink); //Overwrites the yellow
+   if ( turnongrey==true ) fill(grey);
   if ( turnOnBrown==true ) fill(brown); //Overwrites the yellow & pink
   rect(ptX[2], ptY[2], rectWidth, rectHeight); //Buttons change the Colour of RECT(#2)
   fill(resetWhite);
@@ -102,7 +110,15 @@ void draw() {
   } else {
     fill(black);
     rect(ptX[3], ptY[3], rectWidth, rectHeight);
-  } //Button 4 (Reset), the whole section
+    
+  }
+   if ( mouseX>=ptX[4] && mouseX<=ptX[4]+rectWidth && mouseY>=ptY[4] && mouseY<=ptY[4]+rectHeight ) {
+    fill(yellow);
+    rect(ptX[4], ptY[4], rectWidth, rectHeight);
+  } else {
+    fill(resetWhite);
+    rect(ptX[4], ptY[4], rectWidth, rectHeight);
+  }//Button 4 (Reset), the whole section
   fill(resetWhite); //Best Practice
   //
   fill(black);
@@ -146,9 +162,13 @@ void mousePressed() {
     println("BTN 3 Activated");
     turnOnBrown=true;
   }
+  if (mouseX>=buttonX[4] && mouseX<=buttonX[4]+buttonWidth[4] && mouseY>=buttonY[4] && mouseY<=buttonY[4]+buttonHeight[4]) {
+    println("BTN 4 Activated");
+  turnongrey=true;
+  }
   //Reset Button
   if (mouseX>=ptX[3] && mouseX<=ptX[3]+rectWidth && mouseY>=ptY[3] && mouseY<=ptY[3]+rectHeight) {
-    println("BTN 4 Activated");
+    println("BTN 5 Activated");
     turnOnYellow=false;
     turnOnPink=false;
     turnOnBrown=false;
