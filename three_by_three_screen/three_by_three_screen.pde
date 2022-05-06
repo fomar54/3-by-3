@@ -1,13 +1,13 @@
 //Global Variables
-color black=0, resetWhite=255; //Not night mode (lots of Blue)
+color black=0, resetWhite=255, pink=#FF00E6, brown=#BC6F2F; //Not night mode (lots of Blue)
 color red=color(255, 0, 0), yellow=color(255, 255, 0); //Night Mode example colours, no BLUE
-Boolean turnOnYellow=false;
+Boolean turnOnYellow=false, turnOnPink=false, turnOnBrown=false;
 float rectWidth, rectHeight, ptDiameter;
 //Points are organized by row and actaully ... hint-hint ... value
 int numberOfPoints = 17;
 float[] ptX = new float[numberOfPoints];
 float[] ptY = new float[numberOfPoints];
-int numberofButtons = 4; //will be 9
+int numberofButtons = 4; //Quit, Reset, 1 per square for minimum
 float[] buttonX = new float[numberofButtons];
 float[] buttonY = new float[numberofButtons];
 float[] buttonWidth = new float[numberofButtons];
@@ -56,12 +56,13 @@ void setup()
 }//End setup
 //
 void draw() {
-  
   //Rectangles must be 3 by 3
   rect(ptX[1], ptY[1], rectWidth, rectHeight);
   //
-  //fill();
-  rect(ptX[2], ptY[2], rectWidth, rectHeight);
+  if ( turnOnYellow==true ) fill(yellow);
+  if ( turnOnPink==true ) fill(pink); //Overwrites the yellow
+  if ( turnOnBrown==true ) fill(brown); //Overwrites the yellow & pink
+  rect(ptX[2], ptY[2], rectWidth, rectHeight); //Buttons change the Colour of RECT(#2)
   fill(resetWhite);
   //
   rect(ptX[3], ptY[3], rectWidth, rectHeight);
@@ -72,23 +73,23 @@ void draw() {
   rect(ptX[10], ptY[10], rectWidth, rectHeight);
   rect(ptX[11], ptY[11], rectWidth, rectHeight);
   //
+  //Four different rect() for buttons
   //HoverOver is Yellow
-  
-  if (mouseX>=buttonX[1] && mouseX<=buttonX[1]+buttonWidth[1] && mouseY>=buttonY[1] && mouseY<=buttonY[1]+buttonHeight[1]) {
+  if ( mouseX>=buttonX[1] && mouseX<=buttonX[1]+buttonWidth[1] && mouseY>=buttonY[1] && mouseY<=buttonY[1]+buttonHeight[1] ) {
     fill(yellow);
     rect(buttonX[1], buttonY[1], buttonWidth[1], buttonHeight[1]); //same rect() as above
   } else {
     fill(black);
     rect(buttonX[1], buttonY[1], buttonWidth[1], buttonHeight[1]); //same rect() as above
   } //Button 1
-  if (mouseX>=buttonX[2] && mouseX<=buttonX[2]+buttonWidth[2] && mouseY>=buttonY[2] && mouseY<=buttonY[2]+buttonHeight[2] ) {
+  if ( mouseX>=buttonX[2] && mouseX<=buttonX[2]+buttonWidth[2] && mouseY>=buttonY[2] && mouseY<=buttonY[2]+buttonHeight[2] ) {
     fill(yellow);
     rect(buttonX[2], buttonY[2], buttonWidth[2], buttonHeight[2]); //same rect() as above
   } else {
     fill(black);
     rect(buttonX[2], buttonY[2], buttonWidth[2], buttonHeight[2]); //same rect() as above
   } //Button 2
-  if (mouseX>=buttonX[3] && mouseX<=buttonX[3]+buttonWidth[3] && mouseY>=buttonY[3] && mouseY<=buttonY[3]+buttonHeight[3] ) {
+  if ( mouseX>=buttonX[3] && mouseX<=buttonX[3]+buttonWidth[3] && mouseY>=buttonY[3] && mouseY<=buttonY[3]+buttonHeight[3] ) {
     fill(yellow);
     rect(buttonX[3], buttonY[3], buttonWidth[3], buttonHeight[3]);
   } else {
@@ -135,13 +136,23 @@ void keyPressed() {
 void mousePressed() {
   if (mouseX>=buttonX[1] && mouseX<=buttonX[1]+buttonWidth[1] && mouseY>=buttonY[1] && mouseY<=buttonY[1]+buttonHeight[1]) {
     println("BTN 1 Activated");
-  if (mouseX>=buttonX[2] && mouseX<=buttonX[2]+buttonWidth[2] && mouseY>=buttonY[2] && mouseY<=buttonY[2]+buttonHeight[2] ) {
-   println("BTN 2 Activated");
- if (mouseX>=buttonX[3] && mouseX<=buttonX[3]+buttonWidth[3] && mouseY>=buttonY[3] && mouseY<=buttonY[3]+buttonHeight[3] ) {
+    turnOnYellow=true;
+  } 
+  if (mouseX>=buttonX[2] && mouseX<=buttonX[2]+buttonWidth[2] && mouseY>=buttonY[2] && mouseY<=buttonY[2]+buttonHeight[2]) {
+    println("BTN 2 Activated");
+    turnOnPink=true;
+  }
+  if (mouseX>=buttonX[3] && mouseX<=buttonX[3]+buttonWidth[3] && mouseY>=buttonY[3] && mouseY<=buttonY[3]+buttonHeight[3]) {
     println("BTN 3 Activated");
- if ( mouseX>=ptX[3] && mouseX<=ptX[3]+rectWidth && mouseY>=ptY[3] && mouseY<=ptY[3]+rectHeight ) {
+    turnOnBrown=true;
+  }
+  //Reset Button
+  if (mouseX>=ptX[3] && mouseX<=ptX[3]+rectWidth && mouseY>=ptY[3] && mouseY<=ptY[3]+rectHeight) {
     println("BTN 4 Activated");
- 
+    turnOnYellow=false;
+    turnOnPink=false;
+    turnOnBrown=false;
+  }//End reset
 }//End mousePressed
 //
 //End MAIN Program
