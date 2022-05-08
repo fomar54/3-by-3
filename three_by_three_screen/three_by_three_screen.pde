@@ -4,7 +4,7 @@ color red=color(255, 0, 0), yellow=color(255, 255, 0); //Night Mode example colo
 Boolean turnOnYellow=false, turnOnPink=false, turnOnBrown=false,turnongrey=false ;
 float rectWidth, rectHeight, ptDiameter;
 //Points are organized by row and actaully ... hint-hint ... value
-int numberOfPoints = 17;
+int numberOfPoints = 18;
 float[] ptX = new float[numberOfPoints];
 float[] ptY = new float[numberOfPoints];
 ; //Quit, Reset, 1 per square for minimum
@@ -49,10 +49,10 @@ void setup()
   buttonWidth[3] = appWidth*(1.0/3.0)*(1.0/5.0); //Denominator is 15
   buttonHeight[3] = appHeight*(1.0/3.0)*(1.0/5.0); //Denominator is 15
   //
-   buttonX[4] = appWidth*(3.0/6.0); //Section 3, subsection 2, Numerator is 1
-  buttonY[4] = appHeight*(2.0/4.0); //Section 3, subsection 4, Numerator is 14
-  buttonWidth[4] = appWidth*(2.0/3.0)*(4.0/5.0); //Denominator is 15
-  buttonHeight[4] = appHeight*(2.0/3.0)*(2.0/5.0); //Denominator is 15
+   buttonX[4] = appWidth*(14.0/15.0); //Section 3, subsection 2, Numerator is 1
+  buttonY[4] = appHeight*(13.0/15.0); //Section 3, subsection 4, Numerator is 14
+  buttonWidth[4] = appWidth*(1.0/3.0)*(1.0/5.0); //Denominator is 15
+  buttonHeight[4] = appHeight*(1.0/3.0)*(1.0/5.0); //Denominator is 15
 //
   printArray(buttonX);
   printArray(buttonY);
@@ -106,10 +106,10 @@ void draw() {
    
    if ( mouseX>=ptX[4] && mouseX<=ptX[4]+rectWidth && mouseY>=ptY[4] && mouseY<=ptY[4]+rectHeight ) {
     fill(grey);
-    rect(ptX[4], ptY[4], rectWidth, rectHeight);
+    rect(buttonX[4], buttonY[4], rectWidth, rectHeight);
   } else {
     fill(black );
-    rect(ptX[4], ptY[4], rectWidth, rectHeight);}
+    rect(buttonX[4],buttonY [4], rectWidth, rectHeight);}
     //button 4 
   
   if ( mouseX>=ptX[3] && mouseX<=ptX[3]+rectWidth && mouseY>=ptY[3] && mouseY<=ptY[3]+rectHeight ) {
@@ -165,7 +165,7 @@ void mousePressed() {
   }
   if (mouseX>=buttonX[4] && mouseX<=buttonX[4]+buttonWidth[4] && mouseY>=buttonY[4] && mouseY<=buttonY[4]+buttonHeight[4]) {
     println("BTN 4 Activated");
-  //turnongrey=true;
+  turnongrey=true;
   }
   //Reset Button
   if (mouseX>=ptX[3] && mouseX<=ptX[3]+rectWidth && mouseY>=ptY[3] && mouseY<=ptY[3]+rectHeight) {
