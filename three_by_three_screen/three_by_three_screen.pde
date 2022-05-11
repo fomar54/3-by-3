@@ -77,7 +77,7 @@ void draw() {
   if ( turnongrey==true ) fill(darkgrey);
   if ( turnOnBrown==true ) fill(darkgrey); //Overwrites the yellow & pink
   if(turnondarkgrey==true) fill(darkgrey);
-  if(turnONphoto == true) image(pic,ptX[1], ptY[1], rectWidth, rectHeight );
+  if(turnONphoto == true)
   rect(ptX[2], ptY[2], rectWidth, rectHeight); //Buttons change the Colour of RECT(#2
     textFont(buttonFont,15);
  text(buttonText1,buttonX[4], buttonY[4], buttonWidth[4], buttonHeight[4]);
@@ -172,9 +172,8 @@ void mousePressed() {
     turnOnYellow=true;
   } 
   if (mouseX>=buttonX[2] && mouseX<=buttonX[2]+buttonWidth[2] && mouseY>=buttonY[2] && mouseY<=buttonY[2]+buttonHeight[2]);
-  loadImage ("517359_shutterstock_109444037601_734637.jpeg"); {
+ image(pic,ptX[1], ptY[1], rectWidth, rectHeight ); {
     println("BTN 2 Activated");
-    turnOnPink=true;
      turnONphoto=true ;
   }
   if (mouseX>=buttonX[3] && mouseX<=buttonX[3]+buttonWidth[3] && mouseY>=buttonY[3] && mouseY<=buttonY[3]+buttonHeight[3]) {
