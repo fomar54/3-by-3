@@ -42,7 +42,7 @@ int picHeight = 748;
   //
   buttonX[1] = appWidth*(0.0/3.0)*(1.0/3.0); //Section 1; subsection 2, numerator is 1
   buttonY[1] = appHeight*(1.0/3.0)*(1.0/3.0); //Section 1; subsection 2, numerator is 1
-  buttonWidth[1] = appWidth*(1.0/3.0)*(1.0/5.0); //Width Denominator count = 9 ... 1/9
+  buttonWidth[1] = appWidth*(1.0/3.0)*(1.0/50); //Width Denominator count = 9 ... 1/9
   buttonHeight[1] = appHeight*(1.0/3.0)*(1.0/5.0); //Height Denominator count = 9 ... 1/9
   //
   buttonX[2] = appWidth*(0.0/6.0); //Section 2, subsection 2, numerator is 3
